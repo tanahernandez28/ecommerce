@@ -120,16 +120,15 @@ function showProductsInfo(){
 
         for (let i = 0; i < relatedProducts.length; i++){
             let relatedProduct = relatedProducts[i];
+       
         htmlContentToAppend += `
-    
-        <div>
+        
         <div class="card" style="width: 300px; margin-right: 50px;">
         <div class="card card-custom bg-white border-white border-0 cursor-active" onclick="setProdID( `+ relatedProduct.id +` )" >
             <img class="card-img-top img-fluid" src= `+ relatedProduct.image +` alt="Card Columns" style="width: 300px;" >
             <div class="card-body">
             <h5 class="card-title"> `+ relatedProduct.name +` </h5>
             </div>  
-        </div>
         </div>
         </div>
         `
