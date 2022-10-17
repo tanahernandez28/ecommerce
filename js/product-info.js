@@ -1,5 +1,6 @@
-let productsComments = [];
+let productComments = [];
 let productImages = [];
+let relatedProducts = [];
 
 document.addEventListener("DOMContentLoaded", function(){
     user.innerHTML = localStorage.getItem("username")
@@ -23,7 +24,13 @@ document.addEventListener("DOMContentLoaded", function(e){
             comments = resultObj.data;
             showProductsComments(comments);
         }
-    })
+    });
+    getJSONData(LIST_INFO_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+           let relatedProducts = resultObj.data.relatedProducts;
+            showRelatedProducts(relatedProducts);
+        }
+    });
 })
 
 function showProductsInfo(){
@@ -74,11 +81,11 @@ function showProductsInfo(){
     }
     
     
-    function showProductsComments(productsComments){
+    function showProductsComments(productComments){
         let htmlContentToAppend = "";
 
-        for (let i = 0; i < productsComments.length; i++){
-            let comment = productsComments[i];
+        for (let i = 0; i < productComments.length; i++){
+            let comment = productComments[i];
 
             htmlContentToAppend += `
             
@@ -106,3 +113,25 @@ function showProductsInfo(){
         document.getElementById("comments").innerHTML = htmlContentToAppend; }
     }
           
+
+
+    function showRelatedProducts(relatedProducts){
+        let htmlContentToAppend = "";
+
+        for (let i = 0; i < relatedProducts.length; i++){
+            let relatedProduct = relatedProducts[i];
+        htmlContentToAppend += `
+    
+        <div>
+        <div class="card" style="width: 300px; margin-right: 50px;">
+        <div class="card card-custom bg-white border-white border-0 cursor-active" onclick="setProdID( `+ relatedProduct.id +` )" >
+            <img class="card-img-top img-fluid" src= `+ relatedProduct.image +` alt="Card Columns" style="width: 300px;" >
+            <div class="card-body">
+            <h5 class="card-title"> `+ relatedProduct.name +` </h5>
+            </div>  
+        </div>
+        </div>
+        </div>
+        `
+        document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+         } }
