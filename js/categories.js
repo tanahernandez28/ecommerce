@@ -6,10 +6,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-document.addEventListener("DOMContentLoaded", function(){
-    user.innerHTML = localStorage.getItem("username")
-})
-
+  
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)

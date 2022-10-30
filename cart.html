@@ -31,28 +31,63 @@
           </li>
           <li class="nav-item">
           <li class="nav-item">
-            <ul class="navbar-nav" > 
-          <li class ="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id = "user" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false"></a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="cart.html"> Mi carrito </a></li>
-              <li> <hr class="dropsown-divider"> </li>
-                <li><a class="dropdown-item" href="my-profile.html"> Mi perfil </a></li>
-                <li> <hr class="dropsown-divider"> </li>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="user" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false"></a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="cart.html"> Mi carrito </a></li>
+                  <li>
+                    <hr class="dropsown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="my-profile.html"> Mi perfil </a></li>
+                  <li>
+                    <hr class="dropsown-divider">
+                  </li>
                   <li><a class="dropdown-item" id="btnLogOut" href="index.html"> Cerrar sesión </a></li>
+                </ul>
+              </li>
             </ul>
           </li>
-         </ul>
-        </li>
-       </ul>
+        </ul>
       </div>
     </div>
   </nav>
   <main>
+    <br>
+    <div>
+      <h1 class="text-center"> Carrito de compras </h1>
+    </div>
+    <br>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <h3> Artículos a comprar</h3>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><b>Nombre</b></th>
+            <th><b>Costo</b></th>
+            <th><b>Cantidad</b></th>
+            <th><b>Subtotal</b></th>
+          </tr>
+        </thead>
+        <br>
+        <tbody>
+          <th id="image"> </th>
+          <th id="productName"> </th>
+          <th id="productCost"> </th>
+          <th id="productAmount"> </th>
+          <th id="subTotal"> </th>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="container">
+      <h3> Tipo de envío </h3>
+      <p class="checkbox"><input type="radio" id="shippingClass1"> Premium 2 a 5 días (15%)</p>
+      <p class="checkbox"><input type="radio" id="shippingClass2"> Express 5 a 8 días (7%) </p>
+      <p class="checkbox"><input type="radio" id="shippingClass3"> Standard 12 a 15 días (5%)</p>
     </div>
   </main>
   <footer class="text-muted">

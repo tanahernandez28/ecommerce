@@ -52,3 +52,7 @@ function setProdID(id) {
 btnLogOut.addEventListener("click", function(){
   localStorage.removeItem("username");
 })
+
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("user").innerHTML = localStorage.getItem("username")
+})
