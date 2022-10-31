@@ -33,30 +33,30 @@ function showProductsInfo() {
     let htmlContentToAppend = "";
 
     htmlContentToAppend += `
-                <br>
-                <h1> `+ products.name + ` </h1>
-                <br>
-                <hr> 
-                <div>
-                        <div class="mb-1">
-                        <h5><b> `+ "Precio" + ` </b></h5> 
-                        <p> `+ "UYU" + " " + products.cost + ` </p> 
-                        </div>
-                        <div class="mb-1">
-                        <h5><b> `+ "Descripción" + ` </b></h5>
-                        <p> `+ products.description + ` </p>
-                         </div>
-                         <div class="mb-1">
-                        <h5><b> `+ "Categoría" + ` </b></h5>
-                        <p> `+ products.category + ` </p>
-                         </div>
-                         <div class="mb-1">
-                        <h5><b>    `+ "Cantidad de vendidos" + ` </b></h5>
-                        <p> `+ products.soldCount + ` </p>
-                         </div>
-                       <h5><b> `+ "Imágenes ilustrativas" + ` </b></h5>
-                    </div>
-        `
+    <br>
+    <h1> `+ products.name + ` </h1>
+    <br>
+    <hr>
+    <div>
+      <div class="mb-1">
+        <h5><b> `+ "Precio" + ` </b></h5>
+        <p> `+ "UYU" + " " + products.cost + ` </p>
+      </div>
+      <div class="mb-1">
+        <h5><b> `+ "Descripción" + ` </b></h5>
+        <p> `+ products.description + ` </p>
+      </div>
+      <div class="mb-1">
+        <h5><b> `+ "Categoría" + ` </b></h5>
+        <p> `+ products.category + ` </p>
+      </div>
+      <div class="mb-1">
+        <h5><b> `+ "Cantidad de vendidos" + ` </b></h5>
+        <p> `+ products.soldCount + ` </p>
+      </div>
+      <h5><b> `+ "Imágenes ilustrativas" + ` </b></h5>
+    </div>
+    `
     document.getElementById("prod-info-container").innerHTML = htmlContentToAppend;
 }
 
@@ -119,16 +119,15 @@ function showRelatedProducts(relatedProducts) {
         let relatedProduct = relatedProducts[i];
 
         htmlContentToAppend += `
-        
-        <div class="card" style="width: 300px; margin-right: 50px;">
-        <div class="card card-custom bg-white border-white border-0 cursor-active" onclick="setProdID( `+ relatedProduct.id + ` )" >
-            <img class="card-img-top img-fluid" src= `+ relatedProduct.image + ` alt="Card Columns" style="width: 300px;" >
-            <div class="card-body">
-            <h5 class="card-titlef"> `+ relatedProduct.name + ` </h5>
-            </div>  
-        </div>
-        </div>
-        `
+ <div class="card" style="width: 300px; margin-right: 50px;">
+    <div class="card card-custom bg-white border-white border-0 cursor-active"
+        onclick="setProdID( `+ relatedProduct.id + ` )">
+        <img class="card-img-top img-fluid" src=`+ relatedProduct.image + ` alt="Card Columns" style="width: 300px;">
+        <div class="card-body">
+             <h5 class="card-titlef"> `+ relatedProduct.name + ` </h5>
+         </div>
+    </div>
+</div> `
         document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
     }
 }
