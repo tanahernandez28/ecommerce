@@ -20,7 +20,7 @@ function showCartProducts(cartProducts) {
         <td> `+ product.name + ` </td>
         <td> `+ product.currency + " " + product.unitCost+` </td>
         <td>  <input value="1" style="width:80px">  </td>
-        <th id="subTotalPrice"> `+ product.currency + " " + product.unitCost+` </th>
+        <th> `+ product.currency + " " + product.unitCost+` </th>
         </tr>
         </div>`
         document.getElementById("cart-list-products").innerHTML = htmlContentToAppend;
