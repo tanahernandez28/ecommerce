@@ -13,36 +13,36 @@ const COMMENTS_URL = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("prodID") 
 const CART = CART_INFO_URL + 25801 + EXT_TYPE;
 
 
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = 'ok';
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
     });
 }
 
@@ -51,10 +51,10 @@ function setProdID(id) {
   window.location = "product-info.html"
 }
 
-btnLogOut.addEventListener("click", function(){
+btnLogOut.addEventListener("click", function () {
   localStorage.removeItem("username");
 })
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("user").innerHTML = localStorage.getItem("username")
 })

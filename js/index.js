@@ -4,13 +4,13 @@ function ingresar() {
     const btnIngresar = document.getElementById('btnIngresar')
     if (email !== '' && contra !== '') {
         window.location.href = 'inicio.html'
-    }else {
+    } else {
         alert('Ingresa los datos solicitados')
     }
 }
 btnIngresar.addEventListener("click", () => {
     if (email.value) localStorage.setItem("username", email.value);
-}) 
+})
 
 
 
