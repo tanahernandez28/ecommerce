@@ -81,15 +81,17 @@
     <br>
     <div class="container">
       <h3> Tipo de envío </h3>
-      <form>
-        <input class="checkbox" type="radio" style="color: #0b5ed7" value=1> Premium 2 a 5 días (15%)
-        <br>
-        <input class="checkbox" type="radio" style="color: #0b5ed7" value=2> Express 5 a 8 días (7%)
-        <br>
-        <input class="checkbox" type="radio" style="color: #0b5ed7" value=3> Standard 12 a 15 días (5%)
-      </form>
+      <select id="shippingCost" onchange="subTotalCost();" required>
+        <option value="" disabled selected></option>
+        <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
+        <option value="2" id="op2">Express 5 a 8 días (7%)</option>
+        <option value="3" id="op3">Standard 12 a 15 días (5%)</option>
+      </select>
     </div>
     <div class="container">
+      <br>
+      <hr>
+      <br>
       <div class="row">
         <h3> Dirección de envío </h3>
         <br>
@@ -111,41 +113,29 @@
       <hr>
       <br>
       <h3>Costos</h3>
-      <div class="container" class="list-gorup-item">
-        <div class="col">
-          <div class="d-flex justify-content-between">
-              <div class="mb-0">
-                <h5>Subtotal</h5>
-                <p>Costo unitario del producto por cantidad</p>
-              </div>  
-            <div class="col-2">
-              <div id="subTotal"></div>
-            </div>
+      <div class="list-group-item">
+        <div class="col" class="d-flex justify-content-between">
+          <h5>Subtotal</h5>
+          <p>Costo unitario del producto por cantidad</p>
+          <div class="col-2">
+            <p id="subTotalCost"></p>
           </div>
         </div>
       </div>
-  <div class="container">
-      <div class="list-gorup-item">
-        <div class="col">
-          <div class="container" class="d-flex justify-content-between">
-            <div class="mb-0">
-              <h5>Costo de envío</h5>
-              <p>Según el tipo de envío</p>
-            </div>
-            <div class="col-2">
-              <div id="shippingCost"></div>
-            </div>
+      <div class="list-group-item">
+        <div class="col" class="d-flex justify-content-between">
+          <h5>Costo de envío</h5>
+          <p>Según el tipo de envío</p>
+          <div class="col-2">
+            <p id="shippingCost"></p>
           </div>
         </div>
       </div>
-  </div>
-      <div class="list-gorup-item">
-        <div class="col">
-          <div class="d-flex justify-content-between">
-            <h5>Total (USD)</h5>
-            <div class="col-2">
-              <div id="total"></div>
-            </div>
+      <div class="list-group-item">
+        <div class="col" class="d-flex justify-content-between">
+          <h5>Total ($)</h5>
+          <div class="col-2">
+            <p id="total"> </p>
           </div>
         </div>
       </div>
@@ -156,7 +146,7 @@
       <br>
       <h3>Forma de pago</h3>
       <br>
-      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp; <a href="#">Seleccionar</a></p>
+      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="BTN" data-toggle="modal" data-target="#exampleModal"><a href="#">Seleccionar</a></button></p>
       <br>
       <button class="rounded"
         style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px" type="submit">
