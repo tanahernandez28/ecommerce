@@ -82,12 +82,12 @@
     <div class="container">
       <h3> Tipo de envío </h3>
       <form>
-      <input class="checkbox" type="radio" style="color: #0b5ed7" value=1> Premium 2 a 5 días (15%)
-      <br>
-      <input class="checkbox" type="radio" style="color: #0b5ed7" value=2> Express 5 a 8 días (7%)
-      <br>
-      <input class="checkbox" type="radio" style="color: #0b5ed7" value=3 > Standard 12 a 15 días (5%)
-    </form>
+        <input class="checkbox" type="radio" style="color: #0b5ed7" value=1> Premium 2 a 5 días (15%)
+        <br>
+        <input class="checkbox" type="radio" style="color: #0b5ed7" value=2> Express 5 a 8 días (7%)
+        <br>
+        <input class="checkbox" type="radio" style="color: #0b5ed7" value=3> Standard 12 a 15 días (5%)
+      </form>
     </div>
     <div class="container">
       <div class="row">
@@ -111,21 +111,42 @@
       <hr>
       <br>
       <h3>Costos</h3>
-      <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Subtotal</h5>
-          <p>Costo unitario del producto por cantidad</p>
+      <div class="container" class="list-gorup-item">
+        <div class="col">
+          <div class="d-flex justify-content-between">
+              <div class="mb-0">
+                <h5>Subtotal</h5>
+                <p>Costo unitario del producto por cantidad</p>
+              </div>  
+            <div class="col-2">
+              <div id="subTotal"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Costo de envío</h5>
-          <p>Según el tipo de envío</p>
+  <div class="container">
+      <div class="list-gorup-item">
+        <div class="col">
+          <div class="container" class="d-flex justify-content-between">
+            <div class="mb-0">
+              <h5>Costo de envío</h5>
+              <p>Según el tipo de envío</p>
+            </div>
+            <div class="col-2">
+              <div id="shippingCost"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Total ($)</h5>
+  </div>
+      <div class="list-gorup-item">
+        <div class="col">
+          <div class="d-flex justify-content-between">
+            <h5>Total (USD)</h5>
+            <div class="col-2">
+              <div id="total"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
