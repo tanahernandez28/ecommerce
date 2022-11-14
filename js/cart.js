@@ -105,11 +105,7 @@ document.getElementById("bankAccount").addEventListener("click", function () {
 })
 
 let successful = document.getElementById("successful");
+let closeAlert = document.getElementById("closeAlert");
 
-function comprar() {
-    successful.classList.add("show")
-    setTimeout(function(){
-        successful.classList.remove("show")
-    }, 30000)
-}
+
 
