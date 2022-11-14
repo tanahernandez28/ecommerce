@@ -97,14 +97,14 @@
         <br>
         <br>
         <div class="col-sm-6">
-          <p> Calle </p> <input type="text" style="width: 500px; height:40px">
+          <p> Calle </p> <input id="shippingDirection" type="text" style="width: 500px; height:40px">
         </div>
         <div class="col-sm-6">
-          <p> Número </p> <input type="text" style="width:500px; height:40px">
+          <p> Número </p> <input id="shippingNumber" type="text" style="width:500px; height:40px">
         </div>
         <div class="col-sm-6">
           <br>
-          <p> Esquina </p> <input type="text" style="width:500px; height:40px">
+          <p> Esquina </p> <input id="shippingCorner" type="text" style="width:500px; height:40px">
         </div>
       </div>
     </div>
@@ -150,34 +150,73 @@
       <br>
       <h3>Forma de pago</h3>
       <br>
-      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn" data-toggle="modal"
-          data-target="#exampleModal"><a href="#">Seleccionar</a></button></p>
-      <br>
-      <button class="rounded"
-        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px"
-        type="submit">Finalizar compra </button>
-    </div>
+      <!-- Cuerpo del modal -->
+      <div class="modal fade" id="modal" aria-hidden="true" aria-labelledby="ModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-tittle" id="wayToPay"><b>Forma de pago</b></h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <hr>
+            </div>
+            <div class="modal-body">
+              <p class="checkbox"><input type="radio" id="creditCard" name="paid"> Tarjeta de crédito </p>
+              <br>
+              <div class="row align-items">
+                <div class="col-sm-6 container">
+                  <label class="form-label">Número de tarjeta</label>
+                  <input class="form-control" style="width:150px" type="number" minlength="13" maxlength="18"
+                    id="cardNumber" required>
+                  <div class="invalid-feedback">
+                    <p>Ingrese un número de tarjeta válido.</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 container">
+                  <label class="form-label">Código de seguridad.</label>
+                  <input class="form-control" style="width: 75px" type="number" minlength="3" maxlength="4"
+                    id="securityCode" required>
+                  <div class="invalid-feedback">
+                    <p>Ingrese el código de seguridad</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 container">
+              <label class="form-label">Vencimiento (MM/AA) </label>
+              <input class="form-control" style="width:100px" type="text" maxlength="5" id="expiration" required>
+              <div class="invalid-feedback">
+                <p>Ingrese una fecha de vencimiento válida.</p>
+              </div>
+            </div>
+            <hr>
+            <div class="container">
+              <p class="checkbox"><input type="radio" id="bankAccount" name="paid">Transferencia bancaria</p>
+              <br>
+              <div class="col-sm-6 container">
+                <label class="form-label">Número de cuenta</label>
+                <input class="form-control" style="width: 150px" type="number" maxlength="" minlength="6" maxlength="20"
+                  id="accountNumer" required>
+                <div class="invalid-feedback">
+                  <p>Ingrese un número de cuenta válido.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="closeModal" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <!-- Cuerpo del modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
         </div>
       </div>
+      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp; <a style="color: blue;" role="button" class="btn"
+          data-bs-toggle="modal" data-target="#exampleModal" href="#modal" id="modal">Seleccionar</a></p>
+      <br>
+      <button class="rounded btn btn-prmary btn-block" id="btnCheckOut"
+        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px" type="submit"
+        onclick="validateForm()">Finalizar compra </button>
+    </div>
+    <div class="alert alert success fade" role="alert" id="successful">
+      <p>¡Has comprado con éxito!</p>
     </div>
   </main>
   <footer class="text-muted">

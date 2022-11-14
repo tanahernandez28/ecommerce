@@ -25,9 +25,9 @@ function subTotalCost() {
     let finalTotal = 0;
     let almostTotal = 0;
     let shippingCostValue = 0;
-    let subTotal = document.getElementById("subTotal"); //resultado del subtotal 
-    let count = document.getElementById("amount").value; // input cantidad de productos 
-    let shippingCost = document.getElementById("shippingCost").value; //costo de envío
+    let subTotal = document.getElementById("subTotal"); //donde voy a poner el resultado del subtotal 
+    let count = document.getElementById("amount").value; //input cantidad de productos 
+    let shippingCost = document.getElementById("shippingCost").value; //opción de costo de envío
 
     for (let i = 0; i < productOfCart.length; i++) {
         let resultSubtotal; // resultado del subtotal
@@ -48,21 +48,21 @@ function subTotalCost() {
 
         //calcular porcentaje del precio de envío 
         if (shippingCost == 1) {
-            shippingCostValue = resultSubtotal * 0.15 //premium
-            resultTotal = resultSubtotal + shippingCostValue; 
+            shippingCostValue = parseInt(resultSubtotal * 0.15) //premium
+            resultTotal = resultSubtotal + shippingCostValue;
         } else if (shippingCost == 2) {
-            shippingCostValue = resultSubtotal * 0.07
+            shippingCostValue = parseInt(resultSubtotal * 0.07)
             resultTotal = resultSubtotal + shippingCostValue; //express
         } else if (shippingCost == 3) {
-            shippingCostValue = resultSubtotal * 0.05
+            shippingCostValue = parseInt(resultSubtotal * 0.05)
             resultTotal = resultSubtotal + shippingCostValue; //standard
         }
         shippingCostValue = shippingCostValue;
         finalTotal += resultTotal;
     }
-    document.getElementById("subTotalCost").innerHTML = almostTotal; //agrego el subtotal 
-    document.getElementById("shippingCostValue").innerHTML = shippingCostValue; //agrego el costo del envío 
-    document.getElementById("total").innerHTML = finalTotal; // agrego el total
+    document.getElementById("subTotalCost").innerHTML = almostTotal; //agrego el subtotal al final del html 
+    document.getElementById("shippingCostValue").innerHTML = shippingCostValue; //agrego el costo del envío al final del html
+    document.getElementById("total").innerHTML = finalTotal; // agrego el total al final del html
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -82,3 +82,44 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     })
 })
+
+let accountNumer = document.getElementById("accountNumer");
+let cardNumber = document.getElementById("cardNumber");
+let securityCode = document.getElementById("securityCode");
+let expiration = document.getElementById("expiration");
+let shippingDirection = document.getElementById("shippingDirection").value;
+let shippingNumber = document.getElementById("shippingNumber").value;
+let shippingCorner = document.getElementById("shippingCorner").value;
+
+document.getElementById("closeModal").addEventListener("click", function(){
+    if ((cardNumber.length >= 13 && cardNumber.length <= 18 && (securityCode.length === 3 || securityCode.length === 4) && expiration.length === 5) || (accountNumer >= 6 && accountNumer <= 20)){
+        document.getElementById("modal").classList.remove("text-danger")
+    }
+})
+
+document.getElementById("creditCard").addEventListener("click", function () {
+    accountNumer.setAttribute("disabled", "true")
+    cardNumber.removeAttribute("disabled")
+    securityCode.removeAttribute("disabled")
+    expiration.removeAttribute("disabled")
+})
+document.getElementById("bankAccount").addEventListener("click", function () {
+    accountNumer.removeAttribute("disabled")
+    cardNumber.setAttribute("disabled", "true")
+    securityCode.setAttribute("disabled", "true")
+    expiration.setAttribute("disabled", "true")
+})
+
+function validateForm() {
+    if(shippingDirection.length > 0 && shippingCorner.length <0 && shippingNumber.length > 0) {
+        if (cardNumber.length >= 13 && cardNumber.length <= 18 && securityCode.length === 3 || securityCode.length === 4 && expiration.length === 5) {
+            comprar()
+        } else if (accountNumer >= 6 && accountNumer <= 20){
+            comprar()
+        }
+    }
+}
+
+function comprar() {
+    document.getElementById("successful").classList.add("show")
+}
