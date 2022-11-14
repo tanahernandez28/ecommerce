@@ -104,8 +104,12 @@ document.getElementById("bankAccount").addEventListener("click", function () {
     expiration.setAttribute("disabled", "true")
 })
 
+let successful = document.getElementById("successful");
 
 function comprar() {
-    document.getElementById("successful").classList.add("show")
+    successful.classList.add("show")
+    setTimeout(function(){
+        successful.classList.remove("show")
+    }, 30000)
 }
 
