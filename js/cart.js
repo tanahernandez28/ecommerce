@@ -1,3 +1,5 @@
+var productOfCart = [];
+
 function showCartProducts(cartProducts) {
     let htmlContentToAppend = "";
 
@@ -22,8 +24,9 @@ function showCartProducts(cartProducts) {
 function subTotalCost() {
     let finalTotal = 0;
     let almostTotal = 0;
+    let shippingCostValue = 0;
     let subTotal = document.getElementById("subTotal"); //resultado del subtotal 
-    let count = document.getElementById("amount"); // input cantidad de productos 
+    let count = document.getElementById("amount").value; // input cantidad de productos 
     let shippingCost = document.getElementById("shippingCost").value; //costo de envío
 
     for (let i = 0; i < productOfCart.length; i++) {
@@ -31,7 +34,7 @@ function subTotalCost() {
         let resultTotal; //resultado del total
 
         let cost = productOfCart[i].unitCost; // costo unitario por producto 
-        productOfCart[i].count = count[i].value; // value del input, cantidad de productos
+        productOfCart[i].count = count; // value del input, cantidad de productos
 
         if (productOfCart[i].currency == 'UYU') {
             resultSubtotal = cost * (productOfCart[i].count / 40);
@@ -39,20 +42,26 @@ function subTotalCost() {
             resultSubtotal = cost * productOfCart[i].count;
         }
 
-        subTotal[i].innerHTML = "USD" + resultSubtotal;
+        subTotal.innerHTML = "USD" + resultSubtotal;
         almostTotal += resultSubtotal;
+        resultTotal = resultSubtotal;
 
         //calcular porcentaje del precio de envío 
         if (shippingCost == 1) {
-            resultTotal = resultSubtotal + (resultSubtotal * 0.15); //premium 
+            shippingCostValue = resultSubtotal * 0.15 //premium
+            resultTotal = resultSubtotal + shippingCostValue; 
         } else if (shippingCost == 2) {
-            resultTotal = resultSubtotal + (resultSubtotal * 0.07); //express
+            shippingCostValue = resultSubtotal * 0.07
+            resultTotal = resultSubtotal + shippingCostValue; //express
         } else if (shippingCost == 3) {
-            resultTotal = resultSubtotal + (resultSubtotal * 0.05); //standard
+            shippingCostValue = resultSubtotal * 0.05
+            resultTotal = resultSubtotal + shippingCostValue; //standard
         }
+        shippingCostValue = shippingCostValue;
         finalTotal += resultTotal;
     }
     document.getElementById("subTotalCost").innerHTML = almostTotal; //agrego el subtotal 
+    document.getElementById("shippingCostValue").innerHTML = shippingCostValue; //agrego el costo del envío 
     document.getElementById("total").innerHTML = finalTotal; // agrego el total
 }
 
@@ -66,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         let amount = document.getElementById("amount");
 
         //con el evento input calcular el subtotal cuando se cambia la cantidad 
-        for (let i = 0; i < amount.length; i++) {
-            amount[i].addEventListener("input", function () {
+        for (let i = 0; i < amount.value; i++) {
+            amount.addEventListener("input", function () {
                 subTotalCost();
             })
         }

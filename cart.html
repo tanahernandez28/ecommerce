@@ -81,7 +81,7 @@
     <br>
     <div class="container">
       <h3> Tipo de envío </h3>
-      <select id="shippingCost" onchange="subTotalCost();" required>
+      <select id="shippingCost" onchange=subTotalCost() required>
         <option value="" disabled selected></option>
         <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
         <option value="2" id="op2">Express 5 a 8 días (7%)</option>
@@ -114,28 +114,32 @@
       <br>
       <h3>Costos</h3>
       <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Subtotal</h5>
-          <p>Costo unitario del producto por cantidad</p>
+        <div class="col d-flex justify-content-between">
+          <div>
+            <h5>Subtotal</h5>
+            <p>Costo unitario del producto por cantidad</p>
+          </div>
           <div class="col-2">
             <p id="subTotalCost"></p>
           </div>
         </div>
       </div>
       <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Costo de envío</h5>
-          <p>Según el tipo de envío</p>
+        <div class="col d-flex justify-content-between">
+          <div>
+            <h5>Costo de envío</h5>
+            <p>Según el tipo de envío</p>
+          </div>
           <div class="col-2">
-            <p id="shippingCost"></p>
+            <p id="shippingCostValue"></p>
           </div>
         </div>
       </div>
       <div class="list-group-item">
-        <div class="col" class="d-flex justify-content-between">
-          <h5>Total ($)</h5>
+        <div class="col d-flex justify-content-between">
+          <h5>Total (USD)</h5>
           <div class="col-2">
-            <p id="total"> </p>
+            <p id="total"></p>
           </div>
         </div>
       </div>
@@ -146,11 +150,34 @@
       <br>
       <h3>Forma de pago</h3>
       <br>
-      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="BTN" data-toggle="modal" data-target="#exampleModal"><a href="#">Seleccionar</a></button></p>
+      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn" data-toggle="modal"
+          data-target="#exampleModal"><a href="#">Seleccionar</a></button></p>
       <br>
       <button class="rounded"
-        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px" type="submit">
-        Finalizar compra </button>
+        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px"
+        type="submit">Finalizar compra </button>
+    </div>
+
+    <!-- Cuerpo del modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
