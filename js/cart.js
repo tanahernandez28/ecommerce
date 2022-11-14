@@ -91,12 +91,6 @@ let shippingDirection = document.getElementById("shippingDirection").value;
 let shippingNumber = document.getElementById("shippingNumber").value;
 let shippingCorner = document.getElementById("shippingCorner").value;
 
-document.getElementById("closeModal").addEventListener("click", function(){
-    if ((cardNumber.length >= 13 && cardNumber.length <= 18 && (securityCode.length === 3 || securityCode.length === 4) && expiration.length === 5) || (accountNumer >= 6 && accountNumer <= 20)){
-        document.getElementById("modal").classList.remove("text-danger")
-    }
-})
-
 document.getElementById("creditCard").addEventListener("click", function () {
     accountNumer.setAttribute("disabled", "true")
     cardNumber.removeAttribute("disabled")
@@ -110,16 +104,8 @@ document.getElementById("bankAccount").addEventListener("click", function () {
     expiration.setAttribute("disabled", "true")
 })
 
-function validateForm() {
-    if(shippingDirection.length > 0 && shippingCorner.length <0 && shippingNumber.length > 0) {
-        if (cardNumber.length >= 13 && cardNumber.length <= 18 && securityCode.length === 3 || securityCode.length === 4 && expiration.length === 5) {
-            comprar()
-        } else if (accountNumer >= 6 && accountNumer <= 20){
-            comprar()
-        }
-    }
-}
 
 function comprar() {
     document.getElementById("successful").classList.add("show")
 }
+
