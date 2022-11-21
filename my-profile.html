@@ -69,9 +69,58 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <br><br>
+      <h1 class="text-left"> Perfil </h1>
+      <br>
+      <hr>
+      <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <label class="form-label">Primer nombre *</label>
+              <input class="form-control" type="text" id="firstName" style="width:350px" required>
+              <div class="invalid-feedback">
+                <p>Ingrese su nombre.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Segundo nombre</label>
+              <input class="form-control" type="text" id="secondName" style="width:350px" required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-6">
+              <label class="form-label">Primer apellido *</label>
+              <input class="form-control" type="text" id="firstLastname" style="width:350px" required>
+              <div class="invalid-feedback">
+                <p>Ingrese su apellido.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Segundo apellido</label>
+              <input class="form-control" type="text" id="secondLastname" style="width:350px" required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-6">
+              <label class="form-label">E-mail</label>
+              <input class="form-control" type="text" id="email" style="width:350px" disabled>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Teléfono de contacto *</label>
+              <input class="form-control" type="text" id="contactPhoneNumber" style="width:350px" required>
+              <div class="invalid-feedback">
+                <p>Ingrese su teléfono de contacto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br><br><br><hr>
+      <button class="rounded btn btn-prmary btn-block" id="saveChanges"
+        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:200px; height:40px" type="submit">Guardar cambios</button>
     </div>
   </main>
   <footer class="text-muted">

@@ -90,28 +90,36 @@
     </div>
     <div class="container">
       <br>
-      <hr>
-      <br>
+      <hr><br>
       <div class="row">
         <h3> Dirección de envío </h3>
-        <br>
-        <br>
-        <div class="col-sm-6">
-          <p> Calle </p> <input id="shippingDirection" type="text" style="width: 500px; height:40px">
-        </div>
-        <div class="col-sm-6">
-          <p> Número </p> <input id="shippingNumber" type="text" style="width:500px; height:40px">
-        </div>
-        <div class="col-sm-6">
-          <br>
-          <p> Esquina </p> <input id="shippingCorner" type="text" style="width:500px; height:40px">
-        </div>
+        <br><br>
+        <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
+          <div class="col-sm-6">
+            <p> Calle </p> <input id="shippingDirection" type="text" style="width: 500px; height:40px">
+            <div class="invalid-feedback">
+              <p>Ingrese una calle.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <p> Número </p> <input id="shippingNumber" type="text" style="width:500px; height:40px">
+            <div class="invalid-feedback">
+              <p>Ingrese un número.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <br>
+            <p> Esquina </p> <input id="shippingCorner" type="text" style="width:500px; height:40px">
+            <div class="invalid-feedback">
+              <p>Ingrese una esquina.</p>
+            </div>
+          </div>
       </div>
+      </form>
     </div>
     <div class="container">
       <br>
-      <hr>
-      <br>
+      <hr><br>
       <h3>Costos</h3>
       <div class="list-group-item">
         <div class="col d-flex justify-content-between">
@@ -139,17 +147,17 @@
         <div class="col d-flex justify-content-between">
           <h5>Total (USD)</h5>
           <div class="col-2">
-            <p id="total"></p>
+            <p id="total"> </p>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
       <br>
-      <hr>
-      <br>
+      <hr><br>
       <h3>Forma de pago</h3>
       <br>
+
       <!-- Cuerpo del modal -->
       <div class="modal fade" id="modal" aria-hidden="true" aria-labelledby="ModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -161,61 +169,57 @@
             </div>
             <div class="modal-body">
               <p class="checkbox"><input type="radio" id="creditCard" name="paid"> Tarjeta de crédito </p>
-              <br>
               <div class="row align-items">
                 <div class="col-sm-6 container">
                   <label class="form-label">Número de tarjeta</label>
-                  <input class="form-control" style="width:150px" type="number" minlength="13" maxlength="18"
+                  <input class="form-control" style="width:200px" type="text" minlength="13" maxlength="18"
                     id="cardNumber" required>
-                  <div class="invalid-feedback">
-                    <p>Ingrese un número de tarjeta válido.</p>
-                  </div>
                 </div>
                 <div class="col-sm-6 container">
                   <label class="form-label">Código de seguridad.</label>
-                  <input class="form-control" style="width: 75px" type="number" minlength="3" maxlength="4"
+                  <input class="form-control" style="width: 200px" type="text" minlength="3" maxlength="4"
                     id="securityCode" required>
-                  <div class="invalid-feedback">
-                    <p>Ingrese el código de seguridad</p>
-                  </div>
                 </div>
               </div>
             </div>
             <div class="col-sm-6 container">
               <label class="form-label">Vencimiento (MM/AA) </label>
-              <input class="form-control" style="width:100px" type="text" maxlength="5" id="expiration" required>
-              <div class="invalid-feedback">
-                <p>Ingrese una fecha de vencimiento válida.</p>
-              </div>
+              <input class="form-control" style="width:200px" type="text" maxlength="5" id="expiration" required>
             </div>
             <hr>
             <div class="container">
               <p class="checkbox"><input type="radio" id="bankAccount" name="paid">Transferencia bancaria</p>
-              <br>
               <div class="col-sm-6 container">
                 <label class="form-label">Número de cuenta</label>
-                <input class="form-control" style="width: 150px" type="number" maxlength="" minlength="6" maxlength="20"
+                <input class="form-control" style="width: 250px" type="text" maxlength="" minlength="6" maxlength="20"
                   id="accountNumer" required>
-                <div class="invalid-feedback">
-                  <p>Ingrese un número de cuenta válido.</p>
-                </div>
-                <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-primary" id="closeModal" data-bs-dismiss="modal">Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
+      <!-- Fin del modal -->
+
       <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp; <a style="color: blue;" role="button" class="btn"
           data-bs-toggle="modal" data-target="#exampleModal" href="#modal" id="modal">Seleccionar</a></p>
+      <br>
+      <div class="invalid-feedback">
+        Seleccione una forma de pago.
+      </div>
       <br>
       <button class="rounded btn btn-prmary btn-block" id="btnCheckOut"
         style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px" type="submit"
         onclick="comprar()">Finalizar compra </button>
     </div>
-   
+
+    <div class="alert alert-success fade d-flex justify-content-between" role="alert" id="successful">
+      <p class="text-center">¡Has comprado con éxito!</p>
+      <button id="closeAlert" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

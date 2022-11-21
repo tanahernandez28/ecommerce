@@ -42,7 +42,7 @@ function subTotalCost() {
             resultSubtotal = cost * productOfCart[i].count;
         }
 
-        subTotal.innerHTML = "USD" + resultSubtotal;
+        subTotal.innerHTML = "USD" + " " + resultSubtotal;
         almostTotal += resultSubtotal;
         resultTotal = resultSubtotal;
 
@@ -60,9 +60,9 @@ function subTotalCost() {
         shippingCostValue = shippingCostValue;
         finalTotal += resultTotal;
     }
-    document.getElementById("subTotalCost").innerHTML = almostTotal; //agrego el subtotal al final del html 
-    document.getElementById("shippingCostValue").innerHTML = shippingCostValue; //agrego el costo del envío al final del html
-    document.getElementById("total").innerHTML = finalTotal; // agrego el total al final del html
+    document.getElementById("subTotalCost").innerHTML = "USD" + " " + almostTotal; //agrego el subtotal al final del html 
+    document.getElementById("shippingCostValue").innerHTML = "USD" + " " + shippingCostValue; //agrego el costo del envío al final del html
+    document.getElementById("total").innerHTML = "USD" + " " + finalTotal; // agrego el total al final del html
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 })
 
+// traigo los elementos del HTML
 let accountNumer = document.getElementById("accountNumer");
 let cardNumber = document.getElementById("cardNumber");
 let securityCode = document.getElementById("securityCode");
@@ -90,22 +91,34 @@ let expiration = document.getElementById("expiration");
 let shippingDirection = document.getElementById("shippingDirection").value;
 let shippingNumber = document.getElementById("shippingNumber").value;
 let shippingCorner = document.getElementById("shippingCorner").value;
+let checkboxCreditCard = document.getElementById("creditCard");
+let checkboxBankAccount = document.getElementById("bankAccount");
+let successful = document.getElementById("successful");
+let closeAlert = document.getElementById("closeAlert");
+/////////////////////////////////////////////////////////////////////////////
 
-document.getElementById("creditCard").addEventListener("click", function () {
+// tarjeta de crédito o cuenta bancaria 
+checkboxCreditCard.addEventListener("click", function () {
     accountNumer.setAttribute("disabled", "true")
     cardNumber.removeAttribute("disabled")
     securityCode.removeAttribute("disabled")
     expiration.removeAttribute("disabled")
 })
-document.getElementById("bankAccount").addEventListener("click", function () {
+checkboxBankAccount.addEventListener("click", function () {
     accountNumer.removeAttribute("disabled")
     cardNumber.setAttribute("disabled", "true")
     securityCode.setAttribute("disabled", "true")
     expiration.setAttribute("disabled", "true")
 })
+/////////////////////////////////////////////////////////////////////////////
 
-let successful = document.getElementById("successful");
-let closeAlert = document.getElementById("closeAlert");
 
+
+function comprar() {
+    successful.classList.add("show")
+    }
+
+    closeAlert.addEventListener("click", function(){
+        successful.classList.remove("show")})
 
 
