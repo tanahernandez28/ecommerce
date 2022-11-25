@@ -120,7 +120,7 @@ function showRelatedProducts(relatedProducts) {
         <div class="card" style="width: 300px; margin-right: 50px;">
             <div class="card card-custom bg-white border-white border-0 cursor-active"
                     onclick="setProdID( `+ relatedProduct.id + ` )">
-                    img class="card-img-top img-fluid" src=`+ relatedProduct.image + ` alt="Card Columns" style="width: 300px;">
+                    <img class="card-img-top img-fluid" src=`+ relatedProduct.image + ` alt="Card Columns" style="width: 300px;">
                 <div class="card-body">
                     <h5 class="card-titlef"> `+ relatedProduct.name + ` </h5>
                 </div>

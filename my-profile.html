@@ -110,7 +110,7 @@
             </div>
             <div class="col-sm-6">
               <label class="form-label">Teléfono de contacto *</label>
-              <input class="form-control" type="text" id="contactPhoneNumber" style="width:350px" required>
+              <input class="form-control" type="text" id="phoneNumber" style="width:350px" required>
               <div class="invalid-feedback">
                 <p>Ingrese su teléfono de contacto.</p>
               </div>
@@ -120,8 +120,14 @@
       </form>
       <br><br><br><hr>
       <button class="rounded btn btn-prmary btn-block" id="saveChanges"
-        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:200px; height:40px" type="submit">Guardar cambios</button>
+        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:200px; height:40px" type="submit"onclick="changesSaved()">Guardar cambios</button>
     </div>
+
+    <div class="alert alert-success fade d-flex justify-content-between" role="alert" id="changesSavedAlert">
+      <p class="text-center">Los cambios fueron guardados con éxito.</p>
+      <button id="closeChangesAlert" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">

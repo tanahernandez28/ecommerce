@@ -112,13 +112,11 @@ checkboxBankAccount.addEventListener("click", function () {
 })
 /////////////////////////////////////////////////////////////////////////////
 
-
-
-function comprar() {
+function finishedBuy() {
     successful.classList.add("show")
-    }
-
-    closeAlert.addEventListener("click", function(){
-        successful.classList.remove("show")})
+}
+closeAlert.addEventListener("click", function () {
+    successful.classList.remove("show")
+})
 
 

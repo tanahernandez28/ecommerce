@@ -2,22 +2,30 @@ let firstName = document.getElementById("firstName");//valor del primer nombre
 let secondName = document.getElementById("secondName");//valor del segundo nombre
 let firstLastname = document.getElementById("firstLastname");//valor de primer apellido
 let secondLastname = document.getElementById("secondLastname");//valor del segundo apellido
-let contactPhoneNumber = document.getElementById("contactPhoneNumber");//valor del número de teléfono
+let phoneNumber = document.getElementById("phoneNumber");//valor del número de teléfono
 let email = document.getElementById("email");//campo donde va el mail
 let saveChangesBtn = document.getElementById("saveChanges");//botón "guardar cambios"
+let changesSavedAlert = document.getElementById("changesSavedAlert");//alerta de guardar cambios
+let form = document.getElementById("form");//formulario datos del perfil 
 
-saveChangesBtn.addEventListener("click", function() {
-    if ((firstName.value.length > 0 ) && (firstLastname.value.length > 0 ) && (contactPhoneNumber.value.length > 0 )){
-        localStorage.setItem("firstNameValue", firstName.value)
-        localStorage.setItem("firstLastnameValue", firstLastname.value)
-        localStorage.setItem("contactPhoneNumberValue", contactPhoneNumber.value)
-    }
-  })
+saveChangesBtn.addEventListener("click", () => {
+    if ((firstName.value.lenght > 0 ) && (firstLastname.value.lenght > 0) && (phoneNumber.value.lenght > 0)) 
+        changesSavedAlert.classList.add("show")
+        if (firstName.value) localStorage.setItem("firstNameValue", firstName.value);
+        if (firstLastname.value) localStorage.setItem("firstLastnameValue", firstLastname.value);
+        if (phoneNumber.value) localStorage.setItem("phoneNumberValue", phoneNumber.value) 
+})
 
 document.addEventListener("DOMContentLoaded", function(){
     email.value = localStorage.getItem("username")
-    if (localStorage.getItem("firstNameValue")) firstName.value = localStorage.getItem("firstNameValue");
-    if (localStorage.getItem("firstLastnameValue")) firstLastname.value = localStorage.getItem("firstLastnameValue");
-    if (localStorage.getItem("contactPhoneNumberValue")) contactPhoneNumber.value = localStorage.getItem("contactPhoneNumberValue");
+    firstName.value = localStorage.getItem("firstNameValue")
+    firstLastname.value = localStorage.getItem("firstLastnameValue")
+    phoneNumber.value = localStorage.getItem ("phoneNumberValue")
 })
+
+function changesSaved(){
+    if ((firstName.value.lenght > 0 ) && (firstLastname.value.lenght > 0) && (phoneNumber.value.lenght > 0)) 
+        changesSavedAlert.classList.add("show")
+}
+
 
