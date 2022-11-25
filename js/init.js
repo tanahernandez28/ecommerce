@@ -1,4 +1,5 @@
 let btnLogOut = document.getElementById("btnLogOut");
+let btnMyProfile = document.getElementById("btnMyProfile");
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
 const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
@@ -52,9 +53,12 @@ function setProdID(id) {
 }
 
 btnLogOut.addEventListener("click", function () {
-  localStorage.removeItem("username");
+  localStorage.clear();
 })
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("user").innerHTML = localStorage.getItem("username")
+  
 })
+
+

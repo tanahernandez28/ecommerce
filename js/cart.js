@@ -1,4 +1,17 @@
 var productOfCart = [];
+let cart = document.getElementById("cart-list-products");
+let form = document.getElementById("form");
+let accountNumer = document.getElementById("accountNumer");
+let cardNumber = document.getElementById("cardNumber");
+let securityCode = document.getElementById("securityCode");
+let expiration = document.getElementById("expiration");
+let shippingDirection = document.getElementById("shippingDirection").value;
+let shippingNumber = document.getElementById("shippingNumber").value;
+let shippingCorner = document.getElementById("shippingCorner").value;
+let checkboxCreditCard = document.getElementById("creditCard");
+let checkboxBankAccount = document.getElementById("bankAccount");
+let successful = document.getElementById("successful");
+let closeAlert = document.getElementById("closeAlert");
 
 function showCartProducts(cartProducts) {
     let htmlContentToAppend = "";
@@ -17,7 +30,7 @@ function showCartProducts(cartProducts) {
             </tr>
                    `
     }
-    document.getElementById("cart-list-products").innerHTML = htmlContentToAppend;
+    cart.innerHTML = htmlContentToAppend;
     subTotalCost();
 }
 
@@ -83,19 +96,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 })
 
-// traigo los elementos del HTML
-let accountNumer = document.getElementById("accountNumer");
-let cardNumber = document.getElementById("cardNumber");
-let securityCode = document.getElementById("securityCode");
-let expiration = document.getElementById("expiration");
-let shippingDirection = document.getElementById("shippingDirection").value;
-let shippingNumber = document.getElementById("shippingNumber").value;
-let shippingCorner = document.getElementById("shippingCorner").value;
-let checkboxCreditCard = document.getElementById("creditCard");
-let checkboxBankAccount = document.getElementById("bankAccount");
-let successful = document.getElementById("successful");
-let closeAlert = document.getElementById("closeAlert");
-/////////////////////////////////////////////////////////////////////////////
 
 // tarjeta de crédito o cuenta bancaria 
 checkboxCreditCard.addEventListener("click", function () {
@@ -118,5 +118,24 @@ function finishedBuy() {
 closeAlert.addEventListener("click", function () {
     successful.classList.remove("show")
 })
+
+form.addEventListener("submit", function (event) {
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+        validateForm()
+    }
+    form.classList.add("was-validated")
+})
+
+function validateForm() {
+    if (shippingDirection.length > 0 && shippingNumber.length > 0 && shippingCorner.length > 0) {
+        if ((cardNumber > 12 && cardNumber < 19) && (securityCode > 2 && securityCode < 5) && expiration === 5) {
+            finishedBuy()
+        } else if (accountNumer > 5 && accountNumer < 21) {
+            finishedBuy()
+        }
+    }
+}
 
 
