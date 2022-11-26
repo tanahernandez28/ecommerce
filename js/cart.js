@@ -112,7 +112,7 @@ checkboxBankAccount.addEventListener("click", function () {
 })
 /////////////////////////////////////////////////////////////////////////////
 
-function finishedBuy() {
+/*function finishedBuy() {
     successful.classList.add("show")
 }
 closeAlert.addEventListener("click", function () {
@@ -136,6 +136,10 @@ function validateForm() {
             finishedBuy()
         }
     }
-}
-
-
+}*/
+/*let username = localStorage.getItem("username")
+document.addEventListener("DOMContentLoaded", function(){
+    if (username == null)   
+    document.getElementById("btnMyProfile").classList.toggle("disable")
+})
+*/

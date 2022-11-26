@@ -119,13 +119,19 @@
         </div>
       </form>
       <br><br><br><hr>
-      <button class="rounded btn btn-prmary btn-block" id="saveChanges"
-        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:200px; height:40px" type="submit" onclick="saveChanges()">Guardar cambios</button>
+      <button class="rounded btn btn-prmary btn-block" id="saveChanges" style="background-color:#0b5ed7; border-color: skyblue; color: white; width:200px; height:40px" type="submit" onclick="validateForm()">Guardar cambios</button>
     </div>
 
+      <!-- Alert los cambios se guardaron -->
     <div class="alert alert-success fade d-flex justify-content-between" role="alert" id="changesSavedAlert">
       <p class="text-center">Los cambios fueron guardados con éxito.</p>
       <button id="closeChangesAlert" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Alert ingrese los datos -->
+    <div class=" alert alert-danger alert alert-success fade d-flex justify-content-between" role="alert" id="changesNotSavedAlert">
+      <p class="text-center">Ingrese los campos obligatorios (*)</p>
+      <button id="closeChangesNotSavedAlert" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div>
 
   </main>

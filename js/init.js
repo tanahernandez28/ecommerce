@@ -62,3 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 
+function profile (){
+  if (username != null){
+    btnMyProfile.disabled = false
+  } else {
+    btnMyProfile.disabled = true
+  }
+}
