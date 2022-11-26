@@ -1,17 +1,16 @@
 var productOfCart = [];
 let cart = document.getElementById("cart-list-products");
-let form = document.getElementById("form");
-let accountNumer = document.getElementById("accountNumer");
+let form = document.getElementById("form");////????
+let accountNumber = document.getElementById("accountNumber");
 let cardNumber = document.getElementById("cardNumber");
 let securityCode = document.getElementById("securityCode");
 let expiration = document.getElementById("expiration");
-let shippingDirection = document.getElementById("shippingDirection").value;
-let shippingNumber = document.getElementById("shippingNumber").value;
-let shippingCorner = document.getElementById("shippingCorner").value;
 let checkboxCreditCard = document.getElementById("creditCard");
 let checkboxBankAccount = document.getElementById("bankAccount");
-let successful = document.getElementById("successful");
-let closeAlert = document.getElementById("closeAlert");
+let successful = document.getElementById("successful");////????
+let closeCartAlert = document.getElementById("closeAlert");///????
+let paidMethodText = document.getElementById("paidMethodText");
+
 
 function showCartProducts(cartProducts) {
     let htmlContentToAppend = "";
@@ -99,47 +98,55 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 // tarjeta de crédito o cuenta bancaria 
 checkboxCreditCard.addEventListener("click", function () {
-    accountNumer.setAttribute("disabled", "true")
+    accountNumber.setAttribute("disabled", "true")
     cardNumber.removeAttribute("disabled")
     securityCode.removeAttribute("disabled")
     expiration.removeAttribute("disabled")
 })
 checkboxBankAccount.addEventListener("click", function () {
-    accountNumer.removeAttribute("disabled")
+    accountNumber.removeAttribute("disabled")
     cardNumber.setAttribute("disabled", "true")
     securityCode.setAttribute("disabled", "true")
     expiration.setAttribute("disabled", "true")
 })
-/////////////////////////////////////////////////////////////////////////////
 
-/*function finishedBuy() {
-    successful.classList.add("show")
-}
-closeAlert.addEventListener("click", function () {
-    successful.classList.remove("show")
-})
 
-form.addEventListener("submit", function (event) {
-    if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-        validateForm()
+function selectPaidMethod() {
+
+    let accountNumberValue = document.getElementById("accountNumber").value;
+    let invalidText = document.getElementById("invalidText");
+    let cardNumberValue = document.getElementById("cardNumber").value;
+    let securityCodeValue = document.getElementById("securityCode").value;
+    let expirationValue = document.getElementById("expiration").value;
+
+    if (checkboxCreditCard.checked === false && checkboxBankAccount.checked === false) {
+        modalSelect.classList.remove("is-valid");
+        modalSelect.classList.add("is-invalid");
+    } else {
+        modalSelect.classList.remove("is-valid");
+        modalSelect.classList.add("is-valid");
     }
-    form.classList.add("was-validated")
-})
 
-function validateForm() {
-    if (shippingDirection.length > 0 && shippingNumber.length > 0 && shippingCorner.length > 0) {
-        if ((cardNumber > 12 && cardNumber < 19) && (securityCode > 2 && securityCode < 5) && expiration === 5) {
-            finishedBuy()
-        } else if (accountNumer > 5 && accountNumer < 21) {
-            finishedBuy()
+    if (checkboxBankAccount.checked === true) {
+        modalSelect.classList.remove("is-invalid");
+        modalSelect.classList.add("is-valid");
+        paidMethodText.innerHTML = "Transferencia bancaria"
+
+        if (accountNumberValue > 5 && accountNumberValue < 21) {
+            invalidText.innerHTML = "Ingrese su número de cuenta";
+        } else {
+            invalidText.innerHTML = "";
         }
     }
-}*/
-/*let username = localStorage.getItem("username")
-document.addEventListener("DOMContentLoaded", function(){
-    if (username == null)   
-    document.getElementById("btnMyProfile").classList.toggle("disable")
-})
-*/
+
+    if (checkboxCreditCard === true) {
+        modalSelect.classList.remove("is-invalid");
+        modalSelect.classList.add("is-valid");
+        paidMethodText.innerHTML = "Tarjeta de crédito"
+
+        if ((cardNumberValue > 12 && cardNumberValue < 19) && (securityCodeValue === 3 || securityCodeValue === 4) && (expirationValue === 5)) {
+            invalidText.innerHTML = "Ingrese los datos de su tarjeta"
+        } else invalidText.innerHTML = "";
+    }
+
+}

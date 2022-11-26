@@ -81,12 +81,13 @@
     <br>
     <div class="container">
       <h3> Tipo de envío </h3>
-      <select id="shippingCost" onchange=subTotalCost() required>
-        <option value="" disabled selected></option>
-        <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
-        <option value="2" id="op2">Express 5 a 8 días (7%)</option>
-        <option value="3" id="op3">Standard 12 a 15 días (5%)</option>
-      </select>
+      <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
+        <select id="shippingCost" onchange=subTotalCost() required>
+          <option value="" disabled selected></option>
+          <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
+          <option value="2" id="op2">Express 5 a 8 días (7%)</option>
+          <option value="3" id="op3">Standard 12 a 15 días (5%)</option>
+        </select>
     </div>
     <div class="container">
       <br>
@@ -94,26 +95,27 @@
       <div class="row">
         <h3> Dirección de envío </h3>
         <br><br>
-        <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
-          <div class="col-sm-6">
-            <p> Calle </p> <input id="shippingDirection" type="text" style="width: 500px; height:40px">
-            <div class="invalid-feedback">
-              <p>Ingrese una calle.</p>
-            </div>
+        <div class="col-sm-6">
+          <label for="calle" class="form-label">Calle</label>
+          <input type="text" aria-label="calle" id="shippingStreet" class="form-control" required>
+          <div class="invalid-feedback">
+            <p>Ingrese una calle.</p>
           </div>
-          <div class="col-sm-6">
-            <p> Número </p> <input id="shippingNumber" type="text" style="width:500px; height:40px">
-            <div class="invalid-feedback">
-              <p>Ingrese un número.</p>
-            </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="numero" class="form-label">Número </label>
+          <input type="text" aria-label="numero" id="shippingNumber" class="form-control" required>
+          <div class="invalid-feedback">
+            <p>Ingrese un número.</p>
           </div>
-          <div class="col-sm-6">
-            <br>
-            <p> Esquina </p> <input id="shippingCorner" type="text" style="width:500px; height:40px">
-            <div class="invalid-feedback">
-              <p>Ingrese una esquina.</p>
-            </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="esquina" class="form-label">Esquina</label>
+          <input type="text" aria-label="esquina" id="shippingCorner" class="form-control" required>
+          <div class="invalid-feedback">
+            <p>Ingrese una esquina.</p>
           </div>
+        </div>
       </div>
     </div>
     <div class="container">
@@ -162,36 +164,55 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-tittle" id="wayToPay"><b>Forma de pago</b></h3>
+              <h3 class="modal-tittle"><b>Forma de pago</b></h3>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               <hr>
             </div>
             <div class="modal-body">
-              <p class="checkbox"><input type="radio" id="creditCard" name="paid"> Tarjeta de crédito </p>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="creditCard" name="paidMethod" required>
+                <label class="form-check-label" for="creditCard">Tarjeta de crédito</label>
+              </div>
+              <br>
               <div class="row align-items">
                 <div class="col-sm-6 container">
-                  <label class="form-label">Número de tarjeta</label>
-                  <input class="form-control" style="width:200px" type="text" minlength="13" maxlength="18"
-                    id="cardNumber" required>
+                  <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                  <input aria-label="cardNumber" class="form-control" style="width:200px" type="text" minlength="13"
+                    maxlength="18" id="cardNumber" required>
+                  <div class="invalid-feedback">
+                    Ingrese un número de tarjeta.
+                  </div>
                 </div>
                 <div class="col-sm-6 container">
-                  <label class="form-label">Código de seguridad.</label>
-                  <input class="form-control" style="width: 200px" type="text" minlength="3" maxlength="4"
-                    id="securityCode" required>
+                  <label for="securityCode" class="form-label">Código de seguridad.</label>
+                  <input aria-label="securityCode" class="form-control" style="width: 200px" type="text" minlength="3"
+                    maxlength="4" id="securityCode" required>
+                  <div class="invalid-feedback">
+                    Ingrese el código de seguridad de su tarjeta.
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-sm-6 container">
-              <label class="form-label">Vencimiento (MM/AA) </label>
-              <input class="form-control" style="width:200px" type="text" maxlength="5" id="expiration" required>
+              <label for="expiration" class="form-label">Vencimiento (MM/AA) </label>
+              <input aria-label="expiration" class="form-control" style="width:200px" type="text" maxlength="5"
+                id="expiration" required>
+              <div class="invalid-feedback">
+                Ingrese el vencimiento de su tarjeta.
+              </div>
             </div>
             <hr>
             <div class="container">
-              <p class="checkbox"><input type="radio" id="bankAccount" name="paid">Transferencia bancaria</p>
+              <input type="radio" class="form-check-input" id="bankAccount" name="paidMethod" required>
+              <label class="form-check-label" for="bankAccount">Transferencia bancaria</label>
               <div class="col-sm-6 container">
-                <label class="form-label">Número de cuenta</label>
+                <br>
+                <label for="accountNumber" class="form-label">Número de cuenta</label>
                 <input class="form-control" style="width: 250px" type="text" maxlength="" minlength="6" maxlength="20"
-                  id="accountNumer" required>
+                  id="accountNumber" required>
+                <div class="invalid-feedback">
+                  Ingrese su número de cuenta.
+                </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="button" class="btn btn-primary" id="closeModal" data-bs-dismiss="modal">Cerrar</button>
                 </div>
@@ -202,16 +223,21 @@
       </div>
       <!-- Fin del modal -->
 
-      <p>No ha seleccionado &nbsp;&nbsp;&nbsp;&nbsp; <a style="color: blue;" role="button" class="btn"
-          data-bs-toggle="modal" data-target="#exampleModal" href="#modal" id="modal">Seleccionar</a></p>
-      <br>
-      <div class="invalid-feedback">
-        Seleccione una forma de pago.
+      <div class="col-sm-12">
+        <p><span id="paidMethodText">No ha seleccionado</span> &nbsp;&nbsp;&nbsp;&nbsp; <a style="color: blue;"
+            role="button" class="btn" data-bs-toggle="modal" data-target="#selectModal" href="#modal"
+            id="modalSelect">Seleccionar</a></p>
+        <br>
+        <div id="invalidText">
+        </div>
+        <div class="invalid-feedback">
+          Seleccione una forma de pago.
+        </div>
       </div>
       <br>
       <button class="rounded btn btn-prmary btn-block" id="btnCheckOut"
-        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px" type="submit"
-        onclick="finishedBuy()">Finalizar compra </button>
+        style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px"
+        type="submit">Finalizar compra </button>
     </div>
     </form>
     <div class="alert alert-success fade d-flex justify-content-between" role="alert" id="successful">
