@@ -58,14 +58,17 @@ btnLogOut.addEventListener("click", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("user").innerHTML = localStorage.getItem("username")
-  
+  if (localStorage.getItem("username")) {
+    btnMyProfile.classList.remove("disabled");
+  }
 })
 
 
-function profile (){
-  if (username != null){
+function profile() {
+  if (username != null) {
     btnMyProfile.disabled = false
   } else {
     btnMyProfile.disabled = true
   }
 }
+

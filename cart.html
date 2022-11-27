@@ -40,7 +40,7 @@
                   <li>
                     <hr class="dropsown-divider">
                   </li>
-                  <li><a id="btnMyProfile" class="dropdown-item" href="my-profile.html"> Mi perfil </a></li>
+                  <li><a id="btnMyProfile" class="dropdown-item disabled" href="my-profile.html"> Mi perfil </a></li>
                   <li>
                     <hr class="dropsown-divider">
                   </li>
@@ -81,19 +81,21 @@
     <br>
     <div class="container">
       <h3> Tipo de envío </h3>
-      <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
-        <select id="shippingCost" onchange=subTotalCost() required>
-          <option value="" disabled selected></option>
-          <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
-          <option value="2" id="op2">Express 5 a 8 días (7%)</option>
-          <option value="3" id="op3">Standard 12 a 15 días (5%)</option>
-        </select>
+        <div class="form-check">
+          <select id="shippingCost" onchange=subTotalCost() required>
+            <option value="" disabled selected></option>
+            <option value="1" id="op1">Premium 2 a 5 días (15%)</option>
+            <option value="2" id="op2">Express 5 a 8 días (7%)</option>
+            <option value="3" id="op3">Standard 12 a 15 días (5%)</option>
+          </select>
+        </div>
     </div>
     <div class="container">
       <br>
       <hr><br>
       <div class="row">
         <h3> Dirección de envío </h3>
+        <form action="#" method="get" class="row mt-4 needs-validation" id="form" novalidate>
         <br><br>
         <div class="col-sm-6">
           <label for="calle" class="form-label">Calle</label>
@@ -177,8 +179,8 @@
               <div class="row align-items">
                 <div class="col-sm-6 container">
                   <label for="cardNumber" class="form-label">Número de tarjeta</label>
-                  <input aria-label="cardNumber" class="form-control" style="width:200px" type="text" minlength="13"
-                    maxlength="18" id="cardNumber" required>
+                  <input aria-label="cardNumber" class="form-control" style="width:200px" type="text" minlength="16"
+                    maxlength="16" id="cardNumber" required>
                   <div class="invalid-feedback">
                     Ingrese un número de tarjeta.
                   </div>
@@ -186,7 +188,7 @@
                 <div class="col-sm-6 container">
                   <label for="securityCode" class="form-label">Código de seguridad.</label>
                   <input aria-label="securityCode" class="form-control" style="width: 200px" type="text" minlength="3"
-                    maxlength="4" id="securityCode" required>
+                    maxlength="3" id="securityCode" required>
                   <div class="invalid-feedback">
                     Ingrese el código de seguridad de su tarjeta.
                   </div>
@@ -195,14 +197,14 @@
             </div>
             <div class="col-sm-6 container">
               <label for="expiration" class="form-label">Vencimiento (MM/AA) </label>
-              <input aria-label="expiration" class="form-control" style="width:200px" type="text" maxlength="5"
+              <input aria-label="expiration" class="form-control" style="width:200px" type="text" minlength="5" maxlength="5"
                 id="expiration" required>
               <div class="invalid-feedback">
                 Ingrese el vencimiento de su tarjeta.
               </div>
             </div>
             <hr>
-            <div class="container">
+            <div class="container form-check">
               <input type="radio" class="form-check-input" id="bankAccount" name="paidMethod" required>
               <label class="form-check-label" for="bankAccount">Transferencia bancaria</label>
               <div class="col-sm-6 container">
@@ -237,9 +239,10 @@
       <br>
       <button class="rounded btn btn-prmary btn-block" id="btnCheckOut"
         style="background-color:#0b5ed7; border-color: skyblue; color: white; width:1300px; height:50px"
-        type="submit">Finalizar compra </button>
+        type="submit" onclick="validateForm()">Finalizar compra </button>
     </div>
     </form>
+
     <div class="alert alert-success fade d-flex justify-content-between" role="alert" id="successful">
       <p class="text-center">¡Has comprado con éxito!</p>
       <button id="closeAlert" type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>

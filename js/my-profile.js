@@ -12,6 +12,7 @@ let changesNotSavedAlert = document.getElementById("changesNotSavedAlert");//ale
 let closeChangesNotSavedAlert = document.getElementById("closeChangesNotSavedAlert");//cerrar alerta cambios no guardados
 let username = localStorage.getItem("username"); //correo del usuario
 
+console.log(username);
 
 document.addEventListener("DOMContentLoaded", function(){
     if (username !== null){
@@ -66,3 +67,4 @@ closeChangesAlert.addEventListener("click", function () {
 closeChangesNotSavedAlert.addEventListener("click", function () {
     closeChangesNotSavedAlert.classList.remove("show")
 })
+

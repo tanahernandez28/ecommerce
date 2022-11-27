@@ -1,16 +1,18 @@
 var productOfCart = [];
 let cart = document.getElementById("cart-list-products");
-let form = document.getElementById("form");////????
+let form = document.getElementById("form");
 let accountNumber = document.getElementById("accountNumber");
 let cardNumber = document.getElementById("cardNumber");
 let securityCode = document.getElementById("securityCode");
 let expiration = document.getElementById("expiration");
 let checkboxCreditCard = document.getElementById("creditCard");
 let checkboxBankAccount = document.getElementById("bankAccount");
-let successful = document.getElementById("successful");////????
-let closeCartAlert = document.getElementById("closeAlert");///????
+let successful = document.getElementById("successful");
+let closeCartAlert = document.getElementById("closeAlert");
 let paidMethodText = document.getElementById("paidMethodText");
-
+let invalidText = document.getElementById("invalidText");
+let modalSelect = document.getElementById("modalSelect");
+let btnCloseModal = document.getElementById("closeModal");
 
 function showCartProducts(cartProducts) {
     let htmlContentToAppend = "";
@@ -111,14 +113,14 @@ checkboxBankAccount.addEventListener("click", function () {
 })
 
 
-function selectPaidMethod() {
-
+btnCloseModal.addEventListener("click", function () {
     let accountNumberValue = document.getElementById("accountNumber").value;
-    let invalidText = document.getElementById("invalidText");
     let cardNumberValue = document.getElementById("cardNumber").value;
     let securityCodeValue = document.getElementById("securityCode").value;
     let expirationValue = document.getElementById("expiration").value;
-
+    if ((cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5) || (accountNumberValue.length > 5 && accountNumberValue.length < 21)){
+        modalSelect.classList.remove("text-danger")
+    }
     if (checkboxCreditCard.checked === false && checkboxBankAccount.checked === false) {
         modalSelect.classList.remove("is-valid");
         modalSelect.classList.add("is-invalid");
@@ -132,21 +134,58 @@ function selectPaidMethod() {
         modalSelect.classList.add("is-valid");
         paidMethodText.innerHTML = "Transferencia bancaria"
 
-        if (accountNumberValue > 5 && accountNumberValue < 21) {
+        if (accountNumberValue.length <= 0) {
             invalidText.innerHTML = "Ingrese su número de cuenta";
         } else {
             invalidText.innerHTML = "";
         }
     }
 
-    if (checkboxCreditCard === true) {
+    if (checkboxCreditCard.checked === true) {
         modalSelect.classList.remove("is-invalid");
         modalSelect.classList.add("is-valid");
         paidMethodText.innerHTML = "Tarjeta de crédito"
 
-        if ((cardNumberValue > 12 && cardNumberValue < 19) && (securityCodeValue === 3 || securityCodeValue === 4) && (expirationValue === 5)) {
+        if (cardNumberValue <= 0 || securityCodeValue <= 0 || expirationValue <= 0) {
             invalidText.innerHTML = "Ingrese los datos de su tarjeta"
-        } else invalidText.innerHTML = "";
+        } else {
+            invalidText.innerHTML = "";
+        }
     }
+})
 
+form.addEventListener('submit', function(event){
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+        validateForm()
+        modalSelect.classList.add("text-danger")
+    }
+    form.classList.add('was-validated')
+})
+
+function validateForm() {
+    let shippingStreet = document.getElementById("shippingStreet").value;
+    let shippingNumber = document.getElementById("shippingNumber").value;
+    let shippingCorner = document.getElementById("shippingCorner").value;
+    let cardNumberValue = document.getElementById("cardNumber").value;
+    let securityCodeValue = document.getElementById("securityCode").value;
+    let expirationValue = document.getElementById("expiration").value;
+    let bankAccountValue = document.getElementById("bankAccount").value;
+
+    if (shippingStreet.length > 0 && shippingNumber.length > 0 && shippingCorner.length > 0){
+        if (cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5){
+            finishBuy()
+        } else if (bankAccountValue.length > 5 && bankAccountValue.length < 21){
+            finishBuy()
+        }
+    }
 }
+
+function finishBuy() {
+    successful.classList.add("show")
+}
+
+closeCartAlert.addEventListener("click", function(){
+    successful.classList.remove("show")
+})
