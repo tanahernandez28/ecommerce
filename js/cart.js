@@ -151,12 +151,13 @@ btnCloseModal.addEventListener("click", function () {
 
 form.addEventListener('submit', function (event) {
     if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-        validateForm()
         modalSelect.classList.add("text-danger")
+    } else {
+        form.classList.add('was-validated')
     }
-    form.classList.add('was-validated')
+    event.preventDefault()
+    event.stopPropagation()
+    validateForm()
 })
 
 function validateForm() {
@@ -167,8 +168,10 @@ function validateForm() {
     let securityCodeValue = document.getElementById("securityCode").value;
     let expirationValue = document.getElementById("expiration").value;
     let accountNumberValue = document.getElementById("accountNumber").value;
+    let shippingCostOption = document.getElementById("shippingCost");
+    let shippingOption = shippingCostOption.value;
 
-    if (shippingStreet !== "" && shippingNumber !== "" && shippingCorner !== "") {
+    if (shippingStreet !== "" && shippingNumber !== "" && shippingCorner !== "" && shippingOption !== "" ) {
         if (cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5) {
             successful.classList.add("show")
         } else if (accountNumberValue.length > 5 && accountNumberValue.length < 21) {

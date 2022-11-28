@@ -12,10 +12,9 @@ let changesNotSavedAlert = document.getElementById("changesNotSavedAlert");//ale
 let closeChangesNotSavedAlert = document.getElementById("closeChangesNotSavedAlert");//cerrar alerta cambios no guardados
 let username = localStorage.getItem("username"); //correo del usuario
 
-console.log(username);
 
-document.addEventListener("DOMContentLoaded", function(){
-    if (username !== null){
+document.addEventListener("DOMContentLoaded", function () {
+    if (username !== null) {
         firstName.value = localStorage.getItem("firstNameValue")
         secondName.value = localStorage.getItem("secondNameValue")
         firstLastname.value = localStorage.getItem("firstLastnameValue")
@@ -25,12 +24,17 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 })
 
-saveChangesBtn.addEventListener("click", function(){
-    if((firstName.value.lenght > 0) && (firstLastname.value.lenght > 0) && (phoneNumber.value.lenght > 0))
-    changesSavedAlert.classList.add("show")
+saveChangesBtn.addEventListener("click", function () {
+    if (firstName.value !== "" && firstLastname.value !== "" && phoneNumber.value !== "") {
+        changesSavedAlert.classList.add("show")
+        changesNotSavedAlert.classList.remove("show")
+    } else {
+        changesSavedAlert.classList.remove("show")
+        changesNotSavedAlert.classList.add("show")
+    }
 })
 
-form.addEventListener("submit", function(event){
+form.addEventListener("submit", function (event) {
     if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
@@ -39,32 +43,22 @@ form.addEventListener("submit", function(event){
     form.classList.add("was-validated")
 })
 
-function validateForm(){
+function validateForm() {
     let firstNameValue = document.getElementById("firstName").value;
-    let firstLastnameValue = document.getElementById("firstLastname").value; 
+    let firstLastnameValue = document.getElementById("firstLastname").value;
     let phoneNumberValue = document.getElementById("phoneNumber").value;
     let secondNameValue = document.getElementById("secondName").value;
     let secondLastnameValue = document.getElementById("secondLastname").value;
-    if((firstNameValue.length > 0) && (firstLastname.value.length > 0) && (phoneNumber.value.length > 0)){
-        changesNotSavedAlert.classList.remove("show")
-        changesSavedAlert.classList.add("show")
+    if (firstNameValue !== "" && firstLastname !== "" && phoneNumber !== "") {
         localStorage.setItem("firstNameValue", firstNameValue)
         localStorage.setItem("firstLastnameValue", firstLastnameValue)
         localStorage.setItem("phoneNumberValue", phoneNumberValue)
         localStorage.setItem("secondNameValue", secondNameValue)
         localStorage.setItem("secondLastnameValue", secondLastnameValue)
-    }else {
-        changesSavedAlert.classList.remove("show")
-        changesNotSavedAlert.classList.add("show")
     }
-    
 }
 
-closeChangesAlert.addEventListener("click", function () {
+function closeAlert() {
     changesSavedAlert.classList.remove("show")
-})
-
-closeChangesNotSavedAlert.addEventListener("click", function () {
-    closeChangesNotSavedAlert.classList.remove("show")
-})
-
+    changesNotSavedAlert.classList.remove("show")
+}
