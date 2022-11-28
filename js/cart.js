@@ -118,43 +118,38 @@ btnCloseModal.addEventListener("click", function () {
     let cardNumberValue = document.getElementById("cardNumber").value;
     let securityCodeValue = document.getElementById("securityCode").value;
     let expirationValue = document.getElementById("expiration").value;
-    if ((cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5) || (accountNumberValue.length > 5 && accountNumberValue.length < 21)){
+
+    if ((cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5) || (accountNumberValue.length > 5 && accountNumberValue.length < 21)) {
         modalSelect.classList.remove("text-danger")
     }
     if (checkboxCreditCard.checked === false && checkboxBankAccount.checked === false) {
         modalSelect.classList.remove("is-valid");
         modalSelect.classList.add("is-invalid");
-    } else {
-        modalSelect.classList.remove("is-valid");
-        modalSelect.classList.add("is-valid");
-    }
-
-    if (checkboxBankAccount.checked === true) {
+    } else if (checkboxBankAccount.checked === true) {
         modalSelect.classList.remove("is-invalid");
         modalSelect.classList.add("is-valid");
         paidMethodText.innerHTML = "Transferencia bancaria"
 
-        if (accountNumberValue.length <= 0) {
+        if (accountNumberValue === "") {
             invalidText.innerHTML = "Ingrese su número de cuenta";
         } else {
             invalidText.innerHTML = "";
         }
-    }
-
-    if (checkboxCreditCard.checked === true) {
+    } else if (checkboxCreditCard.checked === true) {
         modalSelect.classList.remove("is-invalid");
         modalSelect.classList.add("is-valid");
         paidMethodText.innerHTML = "Tarjeta de crédito"
 
-        if (cardNumberValue <= 0 || securityCodeValue <= 0 || expirationValue <= 0) {
+        if (cardNumberValue === "" || securityCodeValue === "" || expirationValue === "") {
             invalidText.innerHTML = "Ingrese los datos de su tarjeta"
         } else {
             invalidText.innerHTML = "";
         }
     }
-})
+}
+)
 
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', function (event) {
     if (!form.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
@@ -171,21 +166,19 @@ function validateForm() {
     let cardNumberValue = document.getElementById("cardNumber").value;
     let securityCodeValue = document.getElementById("securityCode").value;
     let expirationValue = document.getElementById("expiration").value;
-    let bankAccountValue = document.getElementById("bankAccount").value;
+    let accountNumberValue = document.getElementById("accountNumber").value;
 
-    if (shippingStreet.length > 0 && shippingNumber.length > 0 && shippingCorner.length > 0){
-        if (cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5){
-            finishBuy()
-        } else if (bankAccountValue.length > 5 && bankAccountValue.length < 21){
-            finishBuy()
+    if (shippingStreet !== "" && shippingNumber !== "" && shippingCorner !== "") {
+        if (cardNumberValue.length === 16 && securityCodeValue.length === 3 && expirationValue.length === 5) {
+            successful.classList.add("show")
+        } else if (accountNumberValue.length > 5 && accountNumberValue.length < 21) {
+            successful.classList.add("show")
         }
+    } else {
+        console.log("hola soy pepe")
     }
 }
 
-function finishBuy() {
-    successful.classList.add("show")
-}
-
-closeCartAlert.addEventListener("click", function(){
+closeCartAlert.addEventListener("click", function () {
     successful.classList.remove("show")
 })
